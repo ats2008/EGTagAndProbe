@@ -99,7 +99,7 @@ else:
     process = L1TTurnOffUnpackStage2GtGmtAndCalo(process)
 
 
-#process.load("L1Trigger.L1TCalorimeter.caloParams_2023_v0_4_eTRecalib_cfi")
+process.load("L1Trigger.L1TCalorimeter.caloParams_2024_v0_2_cfi")
 
 #### handling of cms line options for tier3 submission
 #### the following are dummy defaults, so that one can normally use the config changing file list by hand etc.
