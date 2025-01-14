@@ -148,7 +148,7 @@ if options.secondaryFilesList:
     process.source.secondaryFileNames = cms.untracked.vstring(listSecondaryFiles)
 
 process.maxEvents = cms.untracked.PSet(
-    input = cms.untracked.int32(100)
+    input = cms.untracked.int32(1000)
 )
 
 if options.maxEvents >= -1:
@@ -170,7 +170,7 @@ process.schedule = cms.Schedule(process.p) # do my sequence pls
 
 # Silence output
 process.load("FWCore.MessageService.MessageLogger_cfi")
-process.MessageLogger.cerr.FwkReport.reportEvery = 100
+process.MessageLogger.cerr.FwkReport.reportEvery = 10
 
 # Adding ntuplizer
 process.TFileService=cms.Service('TFileService',fileName=cms.string(options.outputFile))

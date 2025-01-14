@@ -176,14 +176,14 @@ private:
     float genParticleMass[N_GEN_MAX];
     float genParticleMother[N_GEN_MAX];
 
-    int _hasL1[100];
-    int _hasL1_iso[100];
-    int _hasL1Emu[100];
-    int _hasL1Emu_iso[100];
-    int _hasL1_looseiso[100];
-    int _hasL1Emu_looseiso[100];
-    int _hasL1_tightiso[100];
-    int _hasL1Emu_tightiso[100];
+//    int _hasL1[100];
+//    int _hasL1_iso[100];
+//    int _hasL1Emu[100];
+//    int _hasL1Emu_iso[100];
+//    int _hasL1_looseiso[100];
+//    int _hasL1Emu_looseiso[100];
+//    int _hasL1_tightiso[100];
+//    int _hasL1Emu_tightiso[100];
 
     edm::EDGetTokenT< vector<pat::Photon>  >  _photonsTag;
     edm::EDGetTokenT<edm::View<reco::GsfElectron> >  _electronsTag;
@@ -425,23 +425,23 @@ void Ntuplizer::Initialize()
 
     //////////////////////////////////////////////
 
-    for(unsigned int i=0; i<100; i++)
-    {
-        this -> _hasL1[i] = -1;
-        this -> _hasL1_iso[i] = -1;
-    }
-
-    ////////////////////// Pantelis Emulator /////////////////////////////
-    for(unsigned int i=0; i<100; i++)
-    {
-        this -> _hasL1Emu[i] = -1;
-        this -> _hasL1Emu_iso[i] = -1;
-        this -> _hasL1_looseiso[i] = -1;
-        this -> _hasL1Emu_looseiso[i] = -1;
-        this -> _hasL1_tightiso[i] = -1;
-        this -> _hasL1Emu_tightiso[i] =-1;
-
-    }
+//    for(unsigned int i=0; i<100; i++)
+//    {
+//        this -> _hasL1[i] = -1;
+//        this -> _hasL1_iso[i] = -1;
+//    }
+//
+//    ////////////////////// Pantelis Emulator /////////////////////////////
+//    for(unsigned int i=0; i<100; i++)
+//    {
+//        this -> _hasL1Emu[i] = -1;
+//        this -> _hasL1Emu_iso[i] = -1;
+//        this -> _hasL1_looseiso[i] = -1;
+//        this -> _hasL1Emu_looseiso[i] = -1;
+//        this -> _hasL1_tightiso[i] = -1;
+//        this -> _hasL1Emu_tightiso[i] =-1;
+//
+//    }
     /////////////////////////////////////////////////////////////////////
 
 }
@@ -550,32 +550,32 @@ void Ntuplizer::beginJob()
 
 
 
-    for(unsigned int i=0; i<100; i++)
-    {
-        TString name = Form("hasL1_%i",i);
-        this -> _tree -> Branch(name,  &_hasL1[i],  name+"/I");
-        TString name_iso = Form("hasL1_iso_%i",i);
-        this -> _tree -> Branch(name_iso,  &_hasL1_iso[i],  name_iso+"/I");
-        TString name_looseiso = Form("hasL1_looseiso_%i",i);
-        this -> _tree -> Branch(name_looseiso,  &_hasL1_looseiso[i],  name_looseiso+"/I");
-        TString name_tightiso = Form("hasL1_tightiso_%i",i);
-        this -> _tree -> Branch(name_tightiso,  &_hasL1_tightiso[i],  name_tightiso+"/I");
-
-
-    }
-
-    /////////////////////////////// Pantelis Emulator /////////////////////////
-    for (unsigned int i=0; i<100; i++)
-    {
-        TString name = Form("hasL1Emu_%i",i);
-        this -> _tree -> Branch(name, &_hasL1Emu[i], name+"/I");
-        TString name_iso = Form("hasL1Emu_iso%i",i);
-        this -> _tree -> Branch(name_iso, &_hasL1Emu_iso[i], name_iso+"/I");
-        TString name_looseiso = Form("hasL1Emu_looseiso%i",i);
-        this -> _tree -> Branch(name_looseiso, &_hasL1Emu_looseiso[i], name_looseiso+"/I");
-        TString name_tightiso = Form("hasL1Emu_tightiso%i",i);
-        this -> _tree -> Branch(name_tightiso, &_hasL1Emu_tightiso[i], name_tightiso+"/I");
-    }
+//    for(unsigned int i=0; i<100; i++)
+//    {
+//        TString name = Form("hasL1_%i",i);
+//        this -> _tree -> Branch(name,  &_hasL1[i],  name+"/I");
+//        TString name_iso = Form("hasL1_iso_%i",i);
+//        this -> _tree -> Branch(name_iso,  &_hasL1_iso[i],  name_iso+"/I");
+//        TString name_looseiso = Form("hasL1_looseiso_%i",i);
+//        this -> _tree -> Branch(name_looseiso,  &_hasL1_looseiso[i],  name_looseiso+"/I");
+//        TString name_tightiso = Form("hasL1_tightiso_%i",i);
+//        this -> _tree -> Branch(name_tightiso,  &_hasL1_tightiso[i],  name_tightiso+"/I");
+//
+//
+//    }
+//
+//    /////////////////////////////// Pantelis Emulator /////////////////////////
+//    for (unsigned int i=0; i<100; i++)
+//    {
+//        TString name = Form("hasL1Emu_%i",i);
+//        this -> _tree -> Branch(name, &_hasL1Emu[i], name+"/I");
+//        TString name_iso = Form("hasL1Emu_iso%i",i);
+//        this -> _tree -> Branch(name_iso, &_hasL1Emu_iso[i], name_iso+"/I");
+//        TString name_looseiso = Form("hasL1Emu_looseiso%i",i);
+//        this -> _tree -> Branch(name_looseiso, &_hasL1Emu_looseiso[i], name_looseiso+"/I");
+//        TString name_tightiso = Form("hasL1Emu_tightiso%i",i);
+//        this -> _tree -> Branch(name_tightiso, &_hasL1Emu_tightiso[i], name_tightiso+"/I");
+//    }
 
     //////////////////////////////////////////////////////////////////////////
 
@@ -850,14 +850,14 @@ void Ntuplizer::analyze(const edm::Event& iEvent, const edm::EventSetup& eSetup)
 
             }
 
-            for(unsigned int i=0; i<100; i++)
-            {
-                this -> _hasL1[i] = (this -> _l1tPt)>=i;
-                this -> _hasL1_iso[i] = ((this -> _l1tIso) && (this -> _l1tPt)>=i);
-                this -> _hasL1_looseiso[i] = (((this -> _l1tIso)==2 || (this -> _l1tIso)==3) && (this -> _l1tPt)>=i);
-                this -> _hasL1_tightiso[i] = (((this -> _l1tIso)==1 || (this -> _l1tIso)==3) && (this -> _l1tPt)>=i);
+            //for(unsigned int i=0; i<100; i++)
+            //{
+            //    this -> _hasL1[i] = (this -> _l1tPt)>=i;
+            //    this -> _hasL1_iso[i] = ((this -> _l1tIso) && (this -> _l1tPt)>=i);
+            //    this -> _hasL1_looseiso[i] = (((this -> _l1tIso)==2 || (this -> _l1tIso)==3) && (this -> _l1tPt)>=i);
+            //    this -> _hasL1_tightiso[i] = (((this -> _l1tIso)==1 || (this -> _l1tIso)==3) && (this -> _l1tPt)>=i);
 
-            }
+            //}
 
             edm::Handle< BXVector<l1t::EGamma> >  L1EmuEGHandle;
             try
@@ -898,14 +898,14 @@ void Ntuplizer::analyze(const edm::Event& iEvent, const edm::EventSetup& eSetup)
                     }
                 }
 
-                for(unsigned int i=0; i<100; i++)
-                {
-                    this -> _hasL1Emu[i] = (this -> _l1tEmuPt)>=i;
-                    this -> _hasL1Emu_iso[i] = ((this -> _l1tEmuIso) && ( this -> _l1tEmuPt)>=i);
-                    this -> _hasL1Emu_looseiso[i] = (((this -> _l1tEmuIso)==2 || (this -> _l1tEmuIso)==3) && (this -> _l1tEmuPt)>=i);
-                    this -> _hasL1Emu_tightiso[i] = (((this -> _l1tEmuIso)==1 || (this -> _l1tEmuIso)==3) && (this -> _l1tEmuPt)>=i);
+                //for(unsigned int i=0; i<100; i++)
+                //{
+                //    this -> _hasL1Emu[i] = (this -> _l1tEmuPt)>=i;
+                //    this -> _hasL1Emu_iso[i] = ((this -> _l1tEmuIso) && ( this -> _l1tEmuPt)>=i);
+                //    this -> _hasL1Emu_looseiso[i] = (((this -> _l1tEmuIso)==2 || (this -> _l1tEmuIso)==3) && (this -> _l1tEmuPt)>=i);
+                //    this -> _hasL1Emu_tightiso[i] = (((this -> _l1tEmuIso)==1 || (this -> _l1tEmuIso)==3) && (this -> _l1tEmuPt)>=i);
 
-                }
+                //}
             }
 
             this -> _eleProbePt = eleProbe->pt();
