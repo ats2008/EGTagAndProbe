@@ -457,11 +457,11 @@ void Ntuplizer::beginJob()
     this -> _tree -> Branch("RunNumber",&_runNumber,"RunNumber/I");
     this -> _tree -> Branch("lumi",&_lumi,"lumi/I");
 
-    this -> _tree -> Branch("nPhotons",&nPhotons);
-    this -> _tree -> Branch("allPhotonPt",  allPhotonPt,  "allPhotonPt[nPhotons]/F");
-    this -> _tree -> Branch("allPhotonScEt",  allPhotonPt,  "allPhotonPt[nPhotons]/F");
-    this -> _tree -> Branch("allPhotonEta",  allPhotonEta,  "allPhotonEta[nPhotons]/F");
-    this -> _tree -> Branch("allPhotonPhi",  allPhotonPhi,  "allPhotonPhi[nPhotons]/F");
+    //this -> _tree -> Branch("nPhotons",&nPhotons);
+    //this -> _tree -> Branch("allPhotonPt",  allPhotonPt,  "allPhotonPt[nPhotons]/F");
+    //this -> _tree -> Branch("allPhotonScEt",  allPhotonPt,  "allPhotonPt[nPhotons]/F");
+    //this -> _tree -> Branch("allPhotonEta",  allPhotonEta,  "allPhotonEta[nPhotons]/F");
+    //this -> _tree -> Branch("allPhotonPhi",  allPhotonPhi,  "allPhotonPhi[nPhotons]/F");
 
 
     this -> _tree -> Branch("nGenParticle",&nGenParticle);
@@ -526,18 +526,18 @@ void Ntuplizer::beginJob()
     ///////////////////////////////////////////////////////////////////////////////////////////
 
     ///////////////////////////////All Electrons////////////////////////////////////////////////
-    this -> _tree -> Branch("allEl_Pt", &_allEl_Pt);//, "allElectonsPt/array");
-    this -> _tree -> Branch("allEl_Eta", &_allEl_Eta);//, "allElectonsEta/array");
-    this -> _tree -> Branch("allEl_Phi", &_allEl_Phi);//, "allElectonsPhi/array");
-    this -> _tree -> Branch("allEl_SclEt", &_allEl_SclEt);//, "allElectonsSclEt/array");
-    this -> _tree -> Branch("allEl_Charge", &_allEl_Charge);//, "allElectonsCharge/array");
-    this -> _tree -> Branch("allEl_Size", &_allEl_Size, "allEl_Size/I");
+    //this -> _tree -> Branch("allEl_Pt", &_allEl_Pt);//, "allElectonsPt/array");
+    //this -> _tree -> Branch("allEl_Eta", &_allEl_Eta);//, "allElectonsEta/array");
+    //this -> _tree -> Branch("allEl_Phi", &_allEl_Phi);//, "allElectonsPhi/array");
+    //this -> _tree -> Branch("allEl_SclEt", &_allEl_SclEt);//, "allElectonsSclEt/array");
+    //this -> _tree -> Branch("allEl_Charge", &_allEl_Charge);//, "allElectonsCharge/array");
+    //this -> _tree -> Branch("allEl_Size", &_allEl_Size, "allEl_Size/I");
 
-    this -> _tree -> Branch("allL1tPt", &_allL1tPt);
-    this -> _tree -> Branch("allL1tEta", &_allL1tEta);
-    this -> _tree -> Branch("allL1tPhi", &_allL1tPhi);
-    this -> _tree -> Branch("allL1tIso", &_allL1tIso);
-    this -> _tree -> Branch("allL1tQual", &_allL1tQual);
+    //this -> _tree -> Branch("allL1tPt", &_allL1tPt);
+    //this -> _tree -> Branch("allL1tEta", &_allL1tEta);
+    //this -> _tree -> Branch("allL1tPhi", &_allL1tPhi);
+    //this -> _tree -> Branch("allL1tIso", &_allL1tIso);
+    //this -> _tree -> Branch("allL1tQual", &_allL1tQual);
     ///////////////////////////////////////////////////////////////////////////////////////
 
     this -> _tree -> Branch("isTagHLTmatched", &_isTagHLTmatched, "isTagHLTmatched/O");
@@ -641,15 +641,15 @@ void Ntuplizer::analyze(const edm::Event& iEvent, const edm::EventSetup& eSetup)
 
     this -> _allEl_Size=electrons->size();
 
-    for(unsigned int k=0; k<electrons->size(); ++k)
-    {
-        const auto ele = electrons->ptrAt(k);
-        this->_allEl_Pt.push_back(ele->pt());
-        this->_allEl_Eta.push_back(ele->eta());
-        this->_allEl_Phi.push_back(ele->phi());
-        this->_allEl_SclEt.push_back((ele->superCluster()->energy()) / cosh(ele->superCluster()->eta()));
-        this->_allEl_Charge.push_back(ele->charge());
-    }
+    //for(unsigned int k=0; k<electrons->size(); ++k)
+    //{
+    //    const auto ele = electrons->ptrAt(k);
+    //    this->_allEl_Pt.push_back(ele->pt());
+    //    this->_allEl_Eta.push_back(ele->eta());
+    //    this->_allEl_Phi.push_back(ele->phi());
+    //    this->_allEl_SclEt.push_back((ele->superCluster()->energy()) / cosh(ele->superCluster()->eta()));
+    //    this->_allEl_Charge.push_back(ele->charge());
+    //}
     // nPhotons=photons->size();
     // for(unsigned int k=0; k<photons->size(); ++k)
     // {
@@ -815,17 +815,17 @@ void Ntuplizer::analyze(const edm::Event& iEvent, const edm::EventSetup& eSetup)
             this -> _allL1tQual.clear();
 
             ///////////////////////////// All Electrons ////////////////////////////////////////////////////
-            for (l1t::EGammaBxCollection::const_iterator bx0EGIt = L1EGHandle->begin(0); bx0EGIt != L1EGHandle->end(0) ; bx0EGIt++)
-            {
-                const l1t::EGamma& l1tEG= *bx0EGIt;
+            //for (l1t::EGammaBxCollection::const_iterator bx0EGIt = L1EGHandle->begin(0); bx0EGIt != L1EGHandle->end(0) ; bx0EGIt++)
+            //{
+            //    const l1t::EGamma& l1tEG= *bx0EGIt;
 
-                this -> _allL1tPt.push_back(l1tEG.pt());
-                this -> _allL1tEta.push_back(l1tEG.eta());
-                this -> _allL1tPhi.push_back(l1tEG.phi());
-                this -> _allL1tIso.push_back(l1tEG.hwIso());
-                this -> _allL1tQual.push_back(l1tEG.hwQual());
+            //    this -> _allL1tPt.push_back(l1tEG.pt());
+            //    this -> _allL1tEta.push_back(l1tEG.eta());
+            //    this -> _allL1tPhi.push_back(l1tEG.phi());
+            //    this -> _allL1tIso.push_back(l1tEG.hwIso());
+            //    this -> _allL1tQual.push_back(l1tEG.hwQual());
 
-            }
+            //}
             ////////////////////////////////////////////////////////////////////////////////////////////////
 
 
