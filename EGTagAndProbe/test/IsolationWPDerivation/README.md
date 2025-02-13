@@ -14,7 +14,7 @@ The module is still under development and validation phase.
 
 ### Derive Isolation LUTs
 
-```py
+```bash
 []$ python python/makeIsolationLUTs.py -h
 usage: makeIsolationLUTs.py [-h] [-i INPUTFILE] [-o DEST] [-p]
 
@@ -63,7 +63,7 @@ Sample Usage
 
 
 ### Export the LUTs for Efficiencies
-```py
+```bash
 [] $python python/ApplyIsolationLUTForEG_Efficiency.py -h
 usage: ApplyIsolationLUTForEG_Efficiency.py [-h] [-i INPUTFILE] [-l INPUTLUT] [-o DEST] [-t TAG] [--iso {loose,tight}] [-p] [-e]
 
