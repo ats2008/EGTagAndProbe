@@ -57,9 +57,9 @@ optional arguments:
 - `doSanityPlots` will make a set of plots for the input varable distributions
 
 Sample Usage
-    ```bash
+```bash
     python3 python/ApplyIsolationLUTForEG_Rates.py -l IsoDerivation/loose_LUT.txt -i workarea/zs_studies/L1Ntuple_default.root -e -o results/loose_iso/rates/ -p
-    ```
+```
 
 
 ### Export the LUTs for Efficiencies
@@ -88,9 +88,9 @@ optional arguments:
 - `doSanityPlots` will make a set of plots for the input varable distributions
 
 Sample usage
-    ```bash
+```bash
     python3 python/ApplyIsolationLUTForEG_Efficiency.py -l IsoDerivation/loose_LUT.txt -i workarea/zs_studies/TandP_default.root -e -o results/loose_iso/effs/
-    ```
+```
 ## Status
 - [ ] Isolation Derivation
   -  [x] Implementaion : Done
