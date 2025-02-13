@@ -31,7 +31,7 @@ optional arguments:
 - `doSanityPlots` will make a set of plots for the input varable distributions
 
 ### Export the LUTs for Efficiencies
-```
+```bash
 []$ python python/ApplyIsolationLUTForEG_Rates.py -h
 usage: ApplyIsolationLUTForEG_Rates.py [-h] [-i INPUTFILE] [-l INPUTLUT] [-o DEST] [-t TAG] [--iso {loose,tight}] [-p] [-e]
 
