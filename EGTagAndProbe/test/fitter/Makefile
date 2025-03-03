@@ -4,7 +4,7 @@ LIBS		=`root-config --libs`
 CXXFLAGS 	=-g3 -std=c++11  `root-config --cflags` 
 INCPATH     = include/
 
-TARGET		= turn_on_productionv, resolution_production
+TARGET		= turn_on_productionPFEt resolution_productionPFEt
 all:	$(TARGET) 
 
 turn_on_production : src/turn_on_production.cc 
