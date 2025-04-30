@@ -7,6 +7,8 @@ from Configuration.Eras.Era_Run3_cff import Run3
 
 isMC = False
 isMINIAOD = False
+doReRmu = False
+CALOPARAMS = "L1Trigger.L1TCalorimeter.caloParams_2024_v0_2_cfi"
 
 process = cms.Process("TagAndProbe",eras.Run3)
 process.load("Configuration.StandardSequences.FrontierConditions_GlobalTag_cff")
@@ -20,6 +22,8 @@ process.load('Configuration.EventContent.EventContent_cff')
 process.load('Configuration.StandardSequences.GeometryRecoDB_cff')
 process.load('Configuration.StandardSequences.MagneticField_AutoFromDBCurrent_cff')
 
+if isMINIAOD:
+    doReRmu=False
 
 options = VarParsing.VarParsing ('analysis')
 options.register ('secondaryFilesList','',VarParsing.VarParsing.multiplicity.singleton,VarParsing.VarParsing.varType.string,  "List of secondary input files")
@@ -57,9 +61,7 @@ else:
     '/store/mc/Run3Winter21DRMiniAOD/DYToLL_M-50_TuneCP5_14TeV-pythia8/MINIAODSIM/FlatPU30to80FEVT_112X_mcRun3_2021_realistic_v16-v2/120000/08ea458b-8a11-4822-b49c-cee9b4a85630.root'
      ),
    )
-    
     process.Ntuplizer.useHLTMatch = cms.bool(False) #In case no HLT object in MC sample considered or you're fed up with trying to find the right HLT collections
-
 
 if isMINIAOD:
     process.egmGsfElectronIDSequence = cms.Sequence()
@@ -78,17 +80,15 @@ else :
     ]
     
     process.electronMVAValueMapProducer.src=cms.InputTag("gedGsfElectrons")
-
     for idmod in my_id_modules:
         setupAllVIDIdsInModule(process, idmod, setupVIDElectronSelection)
-    process.Ntuplizer.eleLooseIdMap  = cms.InputTag("egmGsfElectronIDs:cutBasedElectronID-RunIIIWinter22-V1-loose")
-    process.Ntuplizer.eleTightIdMap = cms.InputTag("egmGsfElectronIDs:mvaEleID-RunIIIWinter22-iso-V1-wp80")
+    process.Ntuplizer.eleLooseIdMap   = cms.InputTag("egmGsfElectronIDs:cutBasedElectronID-RunIIIWinter22-V1-loose")
+    process.Ntuplizer.eleTightIdMap   = cms.InputTag("egmGsfElectronIDs:mvaEleID-RunIIIWinter22-iso-V1-wp80")
     process.Ntuplizer.eleMediumIdMap  = cms.InputTag("egmGsfElectronIDs:mvaEleID-RunIIIWinter22-iso-V1-wp90")
 
 process.schedule = cms.Schedule()
 
 ## L1 emulation stuff
-
 if not isMC:
     from L1Trigger.Configuration.customiseReEmul import L1TReEmulFromRAW 
     process = L1TReEmulFromRAW(process)
@@ -99,7 +99,7 @@ else:
     process = L1TTurnOffUnpackStage2GtGmtAndCalo(process)
 
 
-process.load("L1Trigger.L1TCalorimeter.caloParams_2024_v0_2_cfi")
+process.load( CALOPARAMS )
 
 #### handling of cms line options for tier3 submission
 #### the following are dummy defaults, so that one can normally use the config changing file list by hand etc.
@@ -128,12 +128,18 @@ process.options = cms.untracked.PSet(
     wantSummary = cms.untracked.bool(True)
 )
 
-process.p = cms.Path (
-    process.egmGsfElectronIDSequence +
-    process.RawToDigi +
-    process.L1TReEmul +
-    process.NtupleSeq
-)
+if doReRmu :
+    process.p = cms.Path (
+        process.egmGsfElectronIDSequence +
+        process.RawToDigi +
+        process.L1TReEmul +
+        process.NtupleSeq
+    )
+else :
+    process.p = cms.Path (
+        process.egmGsfElectronIDSequence +
+        process.NtupleSeq
+    )
 
 
 process.schedule = cms.Schedule(process.p) # do my sequence pls
