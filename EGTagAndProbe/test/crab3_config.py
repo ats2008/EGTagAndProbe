@@ -4,12 +4,12 @@ from WMCore.Configuration import Configuration
 config = Configuration()
 
 config.section_("General")
-config.General.requestName = 'TandP_reEmul_EraI_v0'
+config.General.requestName = 'TandP_reEmul_EraI_tutorial_v0'
 config.General.workArea = 'crab_projects'
 
 config.section_("JobType")
 config.JobType.pluginName = 'Analysis'
-config.JobType.psetName = 'TandPRobeNtuplizer.py'
+config.JobType.psetName = 'TandPNtuplizer.py'
 config.JobType.allowUndistributedCMSSW = True
 
 config.section_("Data")
