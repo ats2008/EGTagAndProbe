@@ -1,6 +1,223 @@
 from Util import *
 
 baseCanvas='Run3'
+##  Rates
+
+def plotSingleEGInclusive(histRatesStore,tagsToPlot,doROI,colors,legend,era,lumi,prefix):
+    plots=[]
+    cPars=getCanvasParams(baseCanvas,era,lumi)
+    rBin=1
+    if doROI:
+        plot=getDefaultPlot(prefix=prefix,name='SingleEG_rate_inclusive_ROI',cPars=cPars) 
+    else:
+        plot=getDefaultPlot(prefix=prefix,name='SingleEG_rate_inclusive',cPars=cPars) 
+    plot.lePFdPosition = (0.45,0.61,0.88,0.70)
+    plot.descPosition   = (0.45,0.85)
+    plot.desc =["L1 EG","Zero-Bias","Single EG Rate"]
+    plot.logx = False
+    plot.yTitle = "Rate [kHz]"  
+    plot.xTitle = "E_{T}^{L1}"
+    plot.yRange = (1.0,1e5) 
+    plot.xRange = (5.0,80.0) 
+    plot.logy = True
+    if doROI:
+        plot.yRange = (1.0,50.0) 
+        plot.xRange = (20.0,50.0) 
+        plot.yRange = (1.0,50.0) 
+        plot.logy = False
+    plots.append(plot) 
+
+    hname='SingleEG_rate_inclusive'
+    for tag in tagsToPlot:
+        hist=histRatesStore[tag][hname].Clone()
+        pparams=getDefaultPlotParams(col=colors[tag],marker=22)
+        pparams['Legend']=legend[tag]
+        pparams['MarkerStyle']=8
+        pparams['MarkerColor']= colors[tag]; pparams['LineColor'] =colors[tag]
+        pparams['Options']='HIST pe'
+        aplot = Plot(Name=hist.GetName(), Histo=hist,**pparams)
+        aplot.normalize = False ;aplot.scaleFactor =None
+        aplot.doFit=False ; aplot.drawFit=False
+        aplot.drawLePFd=True
+        aplot.verbose= False
+        plots[-1].addPlot(aplot)
+ 
+    canvas = []
+    for plot in plots:
+        canvas.append(plot.plot())
+
+def plotDoubleEGInclusive(histRatesStore,tagsToPlot,doROI,colors,legend,era,lumi,prefix):
+    plots=[]
+    cPars=getCanvasParams(baseCanvas,era,lumi)
+    rBin=1
+    if doROI:
+        plot=getDefaultPlot(prefix=prefix,name='DoubleEG_rate_inclusive_ROI',cPars=cPars) 
+    else:
+        plot=getDefaultPlot(prefix=prefix,name='DoubleEG_rate_inclusive',cPars=cPars) 
+    plot.lePFdPosition = (0.45,0.61,0.88,0.70)
+    plot.descPosition   = (0.45,0.85)
+    plot.desc =["L1 EG","Zero-Bias","Double EG Rate"]
+    plot.logx = False
+    plot.yTitle = "Rate [kHz]"  
+    plot.xTitle = "E_{T}^{L1}"
+    plot.yRange = (1e-1,1e4) 
+    plot.xRange = (5.0,80.0) 
+    plot.logy = True
+    if doROI:
+        plot.yRange = (0.0,40.0) 
+        plot.xRange = (5.0,25.0) 
+        plot.logy = False
+    plots.append(plot) 
+
+    hname='DoubleEG_rate_inclusive'
+    for tag in tagsToPlot:
+        hist=histRatesStore[tag][hname].Clone()
+        pparams=getDefaultPlotParams(col=colors[tag],marker=22)
+        pparams['Legend']=legend[tag]
+        pparams['MarkerStyle']=8
+        pparams['MarkerColor']= colors[tag]; pparams['LineColor'] =colors[tag]
+        pparams['Options']='HIST pe'
+        aplot = Plot(Name=hist.GetName(), Histo=hist,**pparams)
+        aplot.normalize = False ;aplot.scaleFactor =None
+        aplot.doFit=False ; aplot.drawFit=False
+        aplot.drawLePFd=True
+        aplot.verbose= False
+        plots[-1].addPlot(aplot)
+ 
+    canvas = []
+    for plot in plots:
+        canvas.append(plot.plot())
+
+def plotDoubleEGLooseIso(histRatesStore,tagsToPlot,doROI,colors,legend,era,lumi,prefix):
+    plots=[]
+    cPars=getCanvasParams(baseCanvas,era,lumi)
+    rBin=1
+    if doROI:
+        plot=getDefaultPlot(prefix=prefix,name='DoubleEG_rate__ROI',cPars=cPars) 
+    else:
+        plot=getDefaultPlot(prefix=prefix,name='DoubleEG_rate_inclusive',cPars=cPars) 
+    plot.lePFdPosition = (0.45,0.61,0.88,0.70)
+    plot.descPosition   = (0.45,0.85)
+    plot.desc =["L1 EG","Zero-Bias","Double EG Rate"]
+    plot.logx = False
+    plot.yTitle = "Rate [kHz]"  
+    plot.xTitle = "E_{T}^{L1}"
+    plot.yRange = (1e-1,1e4) 
+    plot.xRange = (5.0,80.0) 
+    plot.logy = True
+    if doROI:
+        plot.yRange = (0.0,40.0) 
+        plot.xRange = (5.0,25.0) 
+        plot.logy = False
+    plots.append(plot) 
+
+    hname='DoubleEG_rate_inclusive'
+    for tag in tagsToPlot:
+        hist=histRatesStore[tag][hname].Clone()
+        pparams=getDefaultPlotParams(col=colors[tag],marker=22)
+        pparams['Legend']=legend[tag]
+        pparams['MarkerStyle']=8
+        pparams['MarkerColor']= colors[tag]; pparams['LineColor'] =colors[tag]
+        pparams['Options']='HIST pe'
+        aplot = Plot(Name=hist.GetName(), Histo=hist,**pparams)
+        aplot.normalize = False ;aplot.scaleFactor =None
+        aplot.doFit=False ; aplot.drawFit=False
+        aplot.drawLePFd=True
+        aplot.verbose= False
+        plots[-1].addPlot(aplot)
+ 
+    canvas = []
+    for plot in plots:
+        canvas.append(plot.plot())
+    
+    
+
+def plotRateGeneric(histRatesStore,plotName,hname,tagsToPlot,colors,legend,
+                    description=["L1 EG","Zero-Bias","Double EG Rate"],xlims=[8,80],ylims=[1e0,1e5],doLogY=True,
+                    era=None,lumi=None,prefix="./"):
+    plots=[]
+    cPars=getCanvasParams(baseCanvas,era,lumi)
+    rBin=1
+    plot=getDefaultPlot(prefix=prefix,name=plotName,cPars=cPars) 
+    plot.lePFdPosition = (0.45,0.61,0.88,0.70)
+    plot.descPosition   = (0.45,0.85)
+    plot.desc = description
+    plot.logx = False
+    plot.yTitle = "Rate [kHz]"  
+    plot.xTitle = "E_{T}^{L1}"
+    plot.yRange = ylims
+    plot.xRange = xlims
+    plot.logy = doLogY
+    plots.append(plot) 
+
+    
+    for tag in tagsToPlot:
+        hist=histRatesStore[tag][hname].Clone()
+        pparams=getDefaultPlotParams(col=colors[tag],marker=22)
+        pparams['Legend']=legend[tag]
+        pparams['MarkerStyle']=8
+        pparams['MarkerColor']= colors[tag]; pparams['LineColor'] =colors[tag]
+        pparams['Options']='HIST pe'
+        aplot = Plot(Name=hist.GetName(), Histo=hist,**pparams)
+        aplot.normalize = False ;aplot.scaleFactor =None
+        aplot.doFit=False ; aplot.drawFit=False
+        aplot.drawLePFd=True
+        aplot.verbose= False
+        plots[-1].addPlot(aplot)
+ 
+    canvas = []
+    for plot in plots:
+        canvas.append(plot.plot())
+    
+    
+def plotRatesAll(histRatesStore,plotName,hlist,tagsToPlot,colors,legend,hist_legend,addTagLegend=True,
+                    description=["L1 EG","Zero-Bias"],xlims=[8,80],ylims=[1e0,1e5],doLogY=True,
+                    era=None,lumi=None,prefix="./"):
+    plots=[]
+    cPars=getCanvasParams(baseCanvas,era,lumi)
+    rBin=1
+    plot=getDefaultPlot(prefix=prefix,name=plotName,cPars=cPars) 
+    plot.lePFdPosition = (0.45,0.61,0.88,0.70)
+    plot.descPosition   = (0.45,0.85)
+    plot.desc = description
+    plot.logx = False
+    plot.yTitle = "Rate [kHz]"  
+    plot.xTitle = "E_{T}^{L1}"
+    plot.yRange = ylims
+    plot.xRange = xlims
+    plot.logy = doLogY
+    plots.append(plot) 
+    color_list=[ROOT.kRed,ROOT.kGreen+2,ROOT.kBlue,ROOT.kMagenta,ROOT.kCyan+2,ROOT.kOrange+2,ROOT.kSpring,ROOT.kTeal,ROOT.kAzure,ROOT.kViolet,ROOT.kPink,ROOT.kYellow]
+    cidx=0
+    for hname in hlist:   
+        for tag in tagsToPlot:
+            hist=histRatesStore[tag][hname].Clone()
+            pparams=getDefaultPlotParams(col=colors[tag],marker=22)
+            if addTagLegend:
+                pparams['Legend']=legend[tag]+"," +hist_legend[hname]
+            else:
+                pparams['Legend']=hist_legend[hname]
+
+            pparams['MarkerStyle']=8
+            pparams['MarkerColor']= color_list[cidx]; pparams['LineColor'] =color_list[cidx]
+            pparams['Options']='HIST pe'
+            aplot = Plot(Name=hist.GetName(), Histo=hist,**pparams)
+            aplot.normalize = False ;aplot.scaleFactor =None
+            aplot.doFit=False ; aplot.drawFit=False
+            aplot.drawLePFd=True
+            aplot.verbose= False
+            plots[-1].addPlot(aplot)
+            cidx+=1
+            if cidx==len(color_list) : cidx=0
+     
+    canvas = []
+    for plot in plots:
+        canvas.append(plot.plot())
+    
+    
+
+
+
 
 ##  EFFICIENCIES
 def plotEffVsPu(histStoreTurnOns,tagsToPlot,colours,legend,era,lumi,prefix,varToChose):

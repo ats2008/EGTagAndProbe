@@ -1,0 +1,27 @@
+{
+"rate_files" : {
+    "2024I_unpacked": "HistgramFile_Rate_Run3_unpacked.root",
+    "2024I_cons_remulated_recaliberated": "HistgramFile_Rate_Run3_reEmu.root"
+},
+  
+"tagsToPlot" : [
+    "2024I_unpacked",
+    "2024I_cons_remulated_recaliberated"
+],
+
+"colours": {
+    "2024I_unpacked" : "kRed",
+    "2024I_cons_remulated_recaliberated"  : "kBlue"
+},
+
+"legend":{
+            "2024I_unpacked"  : "2024I, Unpacked",
+            "2024I_cons_remulated_recaliberated"   : "2024I,@2025 realoberated"
+    },
+
+
+    "prefix":"results/plots/rate/",
+    "era":"2024I ZB",
+    "lumi" : "345456"
+
+}

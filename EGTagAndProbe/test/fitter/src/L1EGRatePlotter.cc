@@ -125,8 +125,7 @@ void L1EGRatePlotter::loop()
             Int_t nPassed_DoubleER = 0;
             Int_t nPassed_SingleER =0;
             Int_t nPassed_SingleERXP10 = 0;
-            I
-            nt_t nPassed_TightIso_Single = 0;
+            Int_t nPassed_TightIso_Single = 0;
             Int_t nPassed_LooseIso_Single = 0;
             Int_t nPassed_LooseIso_Double = 0;
 
@@ -403,6 +402,7 @@ void L1EGRatePlotter::readParameters(const std::string jfile) {
                 std::cout << " unknown option " << " key " << key << std::endl;
         }
     }
+    std::cout<<" Reading the tree : "<<treeName<<"\n";
     jobcardFile.close();
 
 }

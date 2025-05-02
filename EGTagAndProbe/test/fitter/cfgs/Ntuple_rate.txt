@@ -1,0 +1,1 @@
+/eos/cms/store/group/dpg_trigger/comm_trigger/L1Trigger/piosifid/L1_newHcal/L1_def_newHcal_skimmed.root
