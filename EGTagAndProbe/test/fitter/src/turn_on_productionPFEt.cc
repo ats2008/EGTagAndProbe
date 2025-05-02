@@ -54,29 +54,6 @@ struct dataConfig{
 void produceTurnOns(string infile,string ofileName,TString treeName,string prefix="",bool doEmulationBranches=false,
           bool doAllRuns=false,std::vector<Int_t> RunNumbers = std::vector<Int_t>(),Long64_t maxEvents=1000,Int_t reportEvery=100);
 
-void turn_on_productionv2(int mode=0)
-{
-    int doFull = 1;
- //   produceTurnOns(infile,ofileName,prefix,maxEvents);
- /* 
-    if(mode==0)
-    produceTurnOns("/grid_mnt/t3storage3/athachay/l1egamma/data/run3Data/TagAndProbe_DataRun3_2022C_unpacked_jul29.root",
-                    "turnon.root",
-                    "TagAndProbe_DataRun3_2022C_unpacked_jul29_",
-                    false,
-                   -5*1e4
-                   );
-    if(mode==1)
-    produceTurnOns("/eos/cms/store/group/dpg_trigger/comm_trigger/L1Trigger/athachay/store/Run3_EGamma_13p6TeV/TagAndProbe_DataRun3_2022C_unpacked_aug16.root",
-                    "turnon.root",
-                    "TagAndProbe_DataRun3_2022C_unpacked_aug16_f8120xx",
-                    false,
-                    357401,357401,
-                    -5*1e4
-                   );
-*/
-}
-
 
 void tokenize(const std::string& str, std::vector<std::string>& tokens, const std::string& delimiters) {
   std::string::size_type lastPos = str.find_first_not_of(delimiters, 0);

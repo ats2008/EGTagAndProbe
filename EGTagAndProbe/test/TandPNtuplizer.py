@@ -5,10 +5,10 @@ import FWCore.Utilities.FileUtils as FileUtils
 from Configuration.StandardSequences.Eras import eras
 from Configuration.Eras.Era_Run3_cff import Run3
 
-isMC = False
 isMINIAOD = False
-doReRmu = False
-CALOPARAMS = "L1Trigger.L1TCalorimeter.caloParams_2024_v0_2_cfi"
+doReRmu = True
+CALOPARAMS = "L1Trigger.L1TCalorimeter.caloParams_2024_v0_3_cfi"
+CALOPARAMS = "L1Trigger.L1TCalorimeter.caloParams_2024_v0_3_cfi_recaliberated"
 
 process = cms.Process("TagAndProbe",eras.Run3)
 process.load("Configuration.StandardSequences.FrontierConditions_GlobalTag_cff")
@@ -22,8 +22,11 @@ process.load('Configuration.EventContent.EventContent_cff')
 process.load('Configuration.StandardSequences.GeometryRecoDB_cff')
 process.load('Configuration.StandardSequences.MagneticField_AutoFromDBCurrent_cff')
 
+isMC = False
 if isMINIAOD:
     doReRmu=False
+    print("Sorry MiniAOD workflow not supported anymore , please use the Z-Elecron sim in RAW-RECO format \n( you can find the miniAOD supported workflows in other branches of the repo )")
+    exit(0)
 
 options = VarParsing.VarParsing ('analysis')
 options.register ('secondaryFilesList','',VarParsing.VarParsing.multiplicity.singleton,VarParsing.VarParsing.varType.string,  "List of secondary input files")
@@ -58,7 +61,8 @@ else:
     process.load('EGTagAndProbe.EGTagAndProbe.MCanalysis_cff')
     process.source = cms.Source("PoolSource",
      fileNames= cms.untracked.vstring(
-    '/store/mc/Run3Winter21DRMiniAOD/DYToLL_M-50_TuneCP5_14TeV-pythia8/MINIAODSIM/FlatPU30to80FEVT_112X_mcRun3_2021_realistic_v16-v2/120000/08ea458b-8a11-4822-b49c-cee9b4a85630.root'
+    #'/store/mc/Run3Winter21DRMiniAOD/DYToLL_M-50_TuneCP5_14TeV-pythia8/MINIAODSIM/FlatPU30to80FEVT_112X_mcRun3_2021_realistic_v16-v2/120000/08ea458b-8a11-4822-b49c-cee9b4a85630.root'
+    '/store/data/Run2024I/EGamma0/MINIAOD/PromptReco-v2/000/386/702/00000/1ed4775e-7655-475c-b111-87e1978df6d0.root'
      ),
    )
     process.Ntuplizer.useHLTMatch = cms.bool(False) #In case no HLT object in MC sample considered or you're fed up with trying to find the right HLT collections

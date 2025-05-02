@@ -1,0 +1,34 @@
+{
+
+"response_files" : {
+    "2024I_unpacked": "TagAndProbe_2025Condition_unpacked_resolutions.root",
+    "2024I_cons_remulated_recaliberated": "TagAndProbe_2025Condition_reEmulated_resolutions.root"
+},
+
+"efficiency_files" : {
+    "2024I_unpacked": "TagAndProbe_2025Condition_unpacked_turnons.root",
+    "2024I_cons_remulated_recaliberated": "TagAndProbe_2025Condition_reEmulated_turnons.root"
+},
+  
+"tagsToPlot" : [
+    "2024I_unpacked",
+    "2024I_cons_remulated_recaliberated"
+],
+
+"colours": {
+    "2024I_unpacked" : "kRed",
+    "2024I_cons_remulated_recaliberated"  : "kBlue"
+},
+
+"legend":{
+            "2024I_unpacked"  : "2024I, Unpacked",
+            "2024I_cons_remulated_recaliberated"   : "2024I,@2025 realoberated"
+    },
+
+
+    "prefix":"results/plots/resolutions/",
+    "xlabel":"Offline", 
+    "era":"2024I",
+    "lumi":"4.35 /fb"
+
+}
